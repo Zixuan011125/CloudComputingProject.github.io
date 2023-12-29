@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 6 Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      /* Add margin: 0; to remove default margin */
+      display: flex;
+      flex-direction: column;
+      /* Adjusted to a column layout */
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    /* Header styles */
+    header {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(to right, #4CAF50, #236225);
+      /* Green gradient background */
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      width: 100%;
+      box-sizing: border-box;
+      position: fixed;
+      /* Fixed position at the top */
+      top: 0;
+      left: 0;
+    }
+
+    .login-container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+      /* Add a smooth transition effect */
+      margin-top: 50px;
+      /* Add margin between header and login container */
+    }
+
+    .login-container:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      /* Change box-shadow on hover */
+    }
+
+    .warning {
+      color: red;
+    }
+
+    /* Style the Login button */
+    button {
+      background-color: #4CAF50;
+      /* Green color */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      /* Add a smooth transition effect */
+      margin-top: 15px;
+      /* Add margin to the top of the button */
+    }
+
+    button:hover {
+      background-color: #2e7731;
+      /* Darker green color on hover */
+    }
+
+    /* Password visibility toggle icon */
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    /* Eye icon */
+    .password-toggle i {
+      font-size: 18px;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    /* Adjusted width for inputs and labels */
+    .input-container {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    input {
+      flex-grow: 1;
+      margin-left: -30px;
+      /* Decreased margin from 10px to 5px */
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    label {
+      width: 120px;
+      /* Adjusted width for labels */
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      /* Add margin to the bottom of the heading */
+    }
+  </style>
+
+  <link rel="icon" href="logo.jpg">
+</head>
+
+<body>
+  <!-- Header section with company name -->
+  <header>ZiXuan Group 6 Company</header>
+
+  <div class="login-container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <div class="input-container">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="e.g., john_doe" required>
+      </div>
+      <p class="warning" id="usernameWarning"></p>
+
+      <div class="input-container">
+        <label for="password">Password:</label>
+        <div style="position: relative;">
+          <input type="password" id="password" name="password" placeholder="e.g., P@ssw0rd" required>
+          <span class="password-toggle" onclick="togglePasswordVisibility()">
+            <i id="eyeIcon" class="fa fa-eye"></i>
+          </span>
+        </div>
+      </div>
+      <p class="warning" id="passwordWarning"></p>
+
+      <button type="button" onclick="validateLogin()">Login</button>
+    </form>
+  </div>
+
+  <!-- Font Awesome for the eye icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script>
+    function validateLogin() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var usernameWarning = document.getElementById("usernameWarning");
+      var passwordWarning = document.getElementById("passwordWarning");
+
+      // Reset warnings
+      usernameWarning.innerHTML = "";
+      passwordWarning.innerHTML = "";
+
+      if (username === "") {
+        usernameWarning.innerHTML = "Username is required.";
+        return;
+      }
+
+      if (password === "") {
+        passwordWarning.innerHTML = "Password is required.";
+        return;
+      }
+
+      // Check if the entered username and password match the allowed values
+      if (username !== "admin" || password !== "zixuan1125") {
+        alert("Invalid username or password. Please try again.");
+        return;
+      }
+
+      // Perform actual login validation here (e.g., send data to server)
+      // For the sake of this example, just display a success message
+      alert("Login successful!");
+      window.location.href = 'index.html';
+      // You may redirect the user to another page after successful login
+    }
+
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("password");
+      var eyeIcon = document.getElementById("eyeIcon");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.className = "fa fa-eye-slash";
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.className = "fa fa-eye";
+      }
+    }
+
+  </script>
+</body>
+
+</html>
